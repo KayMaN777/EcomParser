@@ -1,0 +1,413 @@
+﻿    @page "/"
+    @inject NavigationManager NavigationManager
+
+
+
+    <div class="full-width-header">
+    <div class="video-container">
+        <!-- Видео-бэкграунд -->
+        <video autoplay muted loop playsinline class="video-bg">
+            <source src="background.mp4" type="video/mp4">
+            <!-- Фоллбек для браузеров, не поддерживающих видео -->
+            <img src="fallback-image.jpg" alt="Background">
+        </video>
+        <div class="header-overlay">
+            <MudGrid Justify="Justify.Center" AlignItems="AlignItems.Center" Class="header-content">
+                <MudItem xs="12" sm="8" md="6">
+                    <MudTypography Variant="H3" Class="hero-main-title" style="transition: all, opacity 500ms, transform 500ms; opacity: 1; transform: translateX(0) translateY(0) translateZ(0);">
+                        E-com parser
+                    </MudTypography>
+                    <MudTypography Variant="Body1" Class="hero-main-title subtitle" style="transition: all, opacity 500ms; opacity: 1;">
+                        Хотите увеличить продажи? Не знаете, какой товар выбрать для реализации на маркетплейсах?<br>
+                        Решение есть — самое время задуматься о конкурентном анализе и изучить свободные ниши.
+                    </MudTypography>
+                </MudItem>
+            </MudGrid>
+        </div>
+    </div>
+    </div>
+
+    <div class="platforms-intro">
+        <MudContainer MaxWidth="MaxWidth.False" Class="px-0">
+            <MudGrid Justify="Justify.Center" AlignItems="AlignItems.Center" Class="text-center">
+                <MudItem xs="12" md="10" lg="8">
+                    <div class="content-wrapper">
+                        <MudText Typo="Typo.h4" Class="platforms-title" Style="color: rgb(13, 85, 231);">
+                            Работаем с популярными маркетплейсами
+                        </MudText>
+                    </div>
+                </MudItem>
+            </MudGrid>
+        </MudContainer>
+    </div>
+    
+    <MudContainer MaxWidth="MaxWidth.ExtraLarge" Class="mt-10">
+        <MudGrid Justify="Justify.Center">
+            <MudItem xs="12" sm="4">
+                <MudButton Variant="Variant.Filled" Color="Color.Primary" FullWidth="true" OnClick="NavigateToWildberries">
+                    <span class="button-content">
+                        <svg width="44" height="44" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M0 22.5341C0 14.6464 0 10.7026 1.53505 7.68991C2.88531 5.03986 5.03986 2.88531 7.68991 1.53505C10.7026 0 14.6464 0 22.5341 0H25.4659C33.3536 0 37.2974 0 40.3101 1.53505C42.9601 2.88531 45.1147 5.03986 46.465 7.68991C48 10.7026 48 14.6464 48 22.5341V25.4659C48 33.3536 48 37.2974 46.465 40.3101C45.1147 42.9601 42.9601 45.1147 40.3101 46.465C37.2974 48 33.3536 48 25.4659 48H22.5341C14.6464 48 10.7026 48 7.68991 46.465C5.03986 45.1147 2.88531 42.9601 1.53505 40.3101C0 37.2974 0 33.3536 0 25.4659V22.5341Z" fill="url(#paint0_linear_7668_1045)"/>
+                            <path d="M36.3171 16.9374C34.598 16.9374 33.0455 17.4573 31.72 18.3471V10.2258H28.053V25.2033C28.053 29.7601 31.7603 33.4271 36.2969 33.4271C40.8336 33.4271 44.583 29.782 44.583 25.1612C44.583 20.5403 40.9159 16.9374 36.3171 16.9374ZM19.6754 26.2615L16.3196 17.5196H13.751L10.375 26.2615L6.99911 17.5196H2.99888L8.90311 32.8907H11.4717L15.0142 23.735L18.5769 32.8907H21.1455L27.0296 17.5196H23.0513L19.6754 26.2615ZM36.2987 29.7619C33.8126 29.7619 31.72 27.7737 31.72 25.1832C31.72 22.5926 33.6881 20.6264 36.3189 20.6264C38.9497 20.6264 40.9178 22.6768 40.9178 25.1832C40.9178 27.6895 38.8252 29.7619 36.2987 29.7619Z" fill="white"/>
+                            <defs>
+                                <linearGradient id="paint0_linear_7668_1045" x1="16.1455" y1="52.1455" x2="45.6" y2="3.05455" gradientUnits="userSpaceOnUse">
+                                    <stop stop-color="#6F01FB"/>
+                                    <stop offset="1" stop-color="#FF49D7"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                
+                    </span>
+                </MudButton>
+            </MudItem>
+    
+            <MudItem xs="12" sm="4">
+                <MudButton Variant="Variant.Filled" Color="Color.Info" FullWidth="true" OnClick="NavigateToOzon"
+                           Style="display: flex; align-items: center; justify-content: center; padding: 10px 20px;">
+                    <span class="button-content" style="display: flex; align-items: center; justify-content: center; gap: 10px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 485 106">
+                            <path fill="#005bff" d="M56.49 80.75c12.54-1.59 22.67-11.72 24.27-24.27a28.2 28.2 0 0 0-31.61-31.61C36.6 26.47 26.47 36.6 24.88 49.14a28.2 28.2 0 0 0 31.61 31.61zM58.2.27a53 53 0 0 1 47.16 47.16c3.31 33.4-24.53 61.24-57.94 57.93A53 53 0 0 1 .27 58.2C-3.04 24.8 24.8-3.04 58.2.27zm75.5 2.09h77.31c2.94 0 4.6 3.36 2.83 5.7l-53.49 70.57h41.91c7.64 0 13.65 6.95 12.07 14.87-1.16 5.81-6.61 9.77-12.53 9.77h-83.96c-2.91 0-4.56-3.33-2.81-5.64L168.56 27h-34.4c-5.92 0-11.37-3.97-12.53-9.77-1.59-7.92 4.43-14.87 12.07-14.87zm335.51.28c7.98-1.68 15 4.36 15 12.04v85.03c0 2.97-3.43 4.62-5.75 2.78l-66.69-52.91v41.39c0 7.68-7.02 13.72-15 12.04-5.72-1.2-9.64-6.53-9.64-12.37V5.91c0-2.97 3.43-4.62 5.75-2.78l66.7 52.91V15.01c0-5.84 3.93-11.16 9.64-12.37zM295.56 0c40.83 0 73.93 23.64 73.93 52.8s-33.1 52.8-73.93 52.8-73.93-23.64-73.93-52.8S254.73 0 295.56 0zm0 24.64c-28.21 0-49.29 14.87-49.29 28.16s21.08 28.16 49.29 28.16 49.29-14.86 49.29-28.16-21.08-28.16-49.29-28.16z"/>
+                        </svg>
+                
+                    </span>
+                </MudButton>
+            </MudItem>
+    
+            <MudItem xs="12" sm="4">
+                <MudButton Variant="Variant.Filled" Color="Color.Warning" FullWidth="true" OnClick="NavigateToYamarket"
+                           Style="display: flex; align-items: center; justify-content: center; padding: 10px 20px;">
+                    <span class="button-content" style="display: flex; align-items: center; justify-content: center; gap: 10px;">
+                        <svg viewBox="0 0 141 29" xmlns="http://www.w3.org/2000/svg" width="44" height="44" style="transform: scale(1.5);">
+                            <path fill="#F00" d="M9.33 2.145H7.72c-.497 0-.977.103-1.442.31-.466.207-.88.537-1.24.992-.362.455-.65 1.038-.87 1.752-.216.712-.324 1.564-.324 2.556 0 .97.12 1.793.357 2.464.238.672.553 1.225.946 1.66.393.433.837.748 1.333.944.495.197 1.012.295 1.55.295h1.3V2.144zM3.13 24H.31l5.022-9.27c-1.467-.702-2.516-1.637-3.146-2.805-.63-1.167-.946-2.557-.946-4.17 0-1.24.176-2.334.527-3.285.35-.95.827-1.75 1.426-2.402.6-.652 1.297-1.142 2.092-1.473C6.082.265 6.923.1 7.813.1h3.968V24H9.33v-8.866H7.72L3.13 24z"/>
+                            <path fill-rule="evenodd" fill="#333" d="M36.3 27.1h-2.2v-3.13h-6.85v3.13h-2.202v-5.146h.96c.497-.93.884-1.932 1.164-3.007.28-1.075.49-2.16.635-3.255.145-1.095.232-2.18.264-3.255.032-1.075.047-2.098.047-3.07V8.005h6.944v13.95h1.24V27.1zm10.727-3.844c-.517.29-1.09.542-1.72.76-.63.217-1.34.325-2.124.325-1.612 0-2.904-.67-3.875-2.014-.97-1.343-1.457-3.234-1.457-5.673 0-1.178.1-2.31.295-3.394.197-1.087.496-2.047.9-2.884.403-.838.914-1.51 1.534-2.015.62-.506 1.363-.76 2.23-.76 1.282 0 2.316.642 3.1 1.923.786 1.28 1.18 3.172 1.18 5.673v1.364h-6.666c0 1.736.294 3.09.883 4.06.59.972 1.514 1.458 2.775 1.458.475 0 .966-.067 1.472-.2.507-.136.905-.265 1.194-.39l.28 1.768zm-4.31-13.67c-.35 0-.66.123-.93.37-.268.25-.495.595-.68 1.04-.187.444-.332.966-.435 1.565-.103.6-.176 1.25-.217 1.954h4.092v-.34c0-.104-.005-.218-.015-.342-.01-.124-.016-.258-.016-.403-.083-1.22-.28-2.166-.59-2.838-.31-.67-.712-1.007-1.208-1.007zm-10.105.402v11.966H28.18c.412-.682.753-1.488 1.022-2.418.27-.93.486-1.917.65-2.96.166-1.044.28-2.108.342-3.194.062-1.085.093-2.113.093-3.084v-.31h2.325zm-8.99-1.984V23.97h-2.45v-7.627h-3.657v7.626h-2.48V8.003h2.48v6.293h3.658V8.004h2.45zM58.87 23.97h-2.76l-3.813-7.875-.28-.34v8.214h-2.48V8.003h2.48v7.254l.28-.31 3.38-6.944h2.634l-3.905 7.192 4.464 8.773zm3.192-7.937c0 1.88.29 3.358.868 4.433.58 1.075 1.467 1.612 2.666 1.612.455 0 .92-.067 1.395-.2.476-.136.86-.265 1.148-.39l.248 1.768c-.475.29-1.007.542-1.596.76-.59.217-1.256.325-2 .325-1.59 0-2.878-.66-3.86-1.983-.98-1.323-1.472-3.224-1.472-5.704 0-1.364.14-2.604.42-3.72.278-1.116.655-2.067 1.13-2.852.475-.784 1.044-1.394 1.705-1.828.66-.434 1.374-.65 2.14-.65.68 0 1.296.092 1.844.278.547.186 1.038.434 1.472.744l-1.272 2.14c-.29-.332-.615-.61-.977-.838-.36-.227-.727-.34-1.1-.34-.433 0-.826.185-1.177.557-.35.372-.64.858-.868 1.457-.227.6-.403 1.286-.527 2.062-.124.775-.186 1.565-.186 2.37zm17.03 4.228h1.206l3.31-12.308c.246-.928.463-1.825.74-3.062h.125c-.062 1.114-.124 2.227-.124 3.28v15.493h1.484V1.55h-1.732L80.33 15.684c-.156.557-.404 1.732-.527 2.567h-.093c-.093-.834-.31-1.978-.464-2.566L75.504 1.55H73.71v22.113h1.36V8.17c0-1.115-.03-2.228-.092-3.28h.093c.186 1.02.434 2.01.743 3.155L79.09 20.26zm13.298 2.537c1.454 0 2.475-1.39 3.03-3.062v-4.298h-1.67c-2.566 0-3.803 1.175-3.803 3.896 0 2.196.96 3.464 2.443 3.464zm3.464.866c-.124-.402-.278-.99-.37-2.103-.743 1.485-1.857 2.413-3.403 2.413-2.102 0-3.556-1.67-3.556-4.516 0-3.34 1.825-5.072 5.196-5.072h1.7v-1.948c0-2.382-.896-3.403-2.597-3.403-1.33 0-2.536.62-3.278 1.702l-.402-1.392c.618-.804 1.917-1.578 3.68-1.578 2.567 0 4.02 1.423 4.02 4.516v8.505c0 1.082.156 2.29.34 2.876h-1.33zm8.66-.866c1.98 0 3.278-2.35 3.278-7.268 0-4.083-1.113-6.496-2.907-6.496-1.392 0-2.567 1.485-3.247 3.155v8.72c.618 1.27 1.484 1.887 2.876 1.887zm-.093 1.145c-1.174 0-2.195-.588-2.782-1.36v5.906h-1.454V8.076h1.268l.124 2.567c.68-1.485 1.825-2.877 3.556-2.877 2.598 0 4.114 3.124 4.114 7.64 0 5.72-1.918 8.536-4.825 8.536zm9.063-8.35l5.412 8.07h1.61l-5.507-8.35 5.134-7.236h-1.422l-5.227 7.33v-7.33h-1.454v15.587h1.453V15.59zm16.144 5.442zm0 0l.464 1.176s-1.174 1.763-3.648 1.763c-3.31 0-4.825-3-4.825-8.104 0-5.104 1.917-8.104 4.546-8.104 2.69 0 4.423 2.815 3.928 8.35h-7.05c.06 4.27 1.175 6.59 3.433 6.59 2.07 0 3.153-1.67 3.154-1.672zm-3.464-12.06c-1.64 0-2.97 2.102-3.092 6h5.66c.248-4.146-.99-6-2.567-6zm14.227.308V8.076h-8.66v1.206h3.62v14.38h1.452V9.283h3.588z"/>
+                        </svg>
+                    </span>
+                </MudButton>
+            </MudItem>
+        </MudGrid>
+    </MudContainer>
+    <br/>
+    <br/>
+    <br/>
+
+    <div class="footer-container">
+        <div class="footer-overlay">
+            <div class="footer-content">
+                <h2 class="footer-title">Наши преимущества</h2>
+
+                <div class="footer-main-text">
+                    <p>В современном мире, где интернет-торговля стремительно развивается, конкуренция
+                        между онлайн-магазинами достигает невиданных масштабов. Покупатели становятся всё бо-
+                        лее требовательными, а рынок насыщается новыми игроками с различными предложениями.
+                        Чтобы выжить в таких условиях, обладать не только уникальным продуктом, но и чётким пониманием рыночной среды.
+                        Именно здесь на помощь приходит анализ конкурентов — важнейший инструмент для стратегического пла-
+                        нирования и принятия обоснованных бизнес-решений. С помощью нашего сайта Вы сможете проанализировать
+                        поисковую выдачу, ассортимент продавцов и наполненность предложениями категории товаров крупнейших
+                        маркетплейсов страны. На даный момент мы работаем с маркетплейсами Wildberries, Ozon и Yandex Market.
+                        Мы открыты к сотрудничеству и предложениям, смело обращайтесь по контактам снизу страницы.</p>
+
+                    <div class="features-divider"></div>
+                    <div class="advantages-grid">
+                        <div class="advantage-item">
+                            <span class="material-icons">speed</span>
+                            <h3>Высокая производительность</h3>
+                            <p>Наши системы оптимизированы для быстрого анализа маркетплейсов</p>
+                        </div>
+
+                        <div class="advantage-item">
+                            <span class="material-icons">public</span>
+                            <h3>Доступность</h3>
+                            <p>Используйте наш сервис из любой точки мира с любого устройства</p>
+                        </div>
+
+                        <div class="advantage-item">
+                            <span class="material-icons">favorite</span>
+                            <h3>Удобство</h3>
+                            <p>Наш сайт разработан, чтобы конкурентный анализ стал простым и понятным</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="features-divider-footer"></div>
+
+    <div class="copyright-section">
+        
+        <div class="copyright-content">
+            <p>Copyright © E-com parser 2025</p>
+        </div>
+    </div>
+
+    <style>
+
+        .hero-main-title {
+            margin-top: 0;
+            font-family: "Source Sans Pro", sans-serif;
+            color: rgb(255, 255, 255);
+            font-size: 70px;
+            line-height: 54px;
+            font-weight: 600;
+            text-align: center;
+            display: block;
+            margin-bottom: 20px;
+        }
+
+        .hero-main-title.subtitle {
+            display: block;
+            width: 70%;
+            margin: 35px auto 0;
+            font-size: 22px;
+            line-height: 32px;
+            font-weight: 200;
+            text-align: center;
+        }
+        
+        .features-divider-footer {
+            height: 2px;
+            background: rgba(0,0,0,0.2); /* Темный полупрозрачный цвет */
+            margin: 50px 0;
+        }
+
+        .copyright-section {
+            width: 100vw;
+            position: relative;
+            left: 50%;
+            right: 50%;
+            margin-left: -50vw;
+            margin-right: -50vw;
+            padding: 20px 0;
+            background: #ffffff;       
+        }
+
+        .copyright-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .copyright-content p {
+            color: #333333; /* Темно-серый цвет */
+            font-size: 0.95rem;
+            margin: 0;
+            letter-spacing: 0.3px;
+            font-family: 'Arial', sans-serif;
+        }
+
+
+
+
+        .footer-container {
+            
+            width: 100vw;
+            height: 1000px;
+            position: relative;
+            left: 50%;
+            right: 50%;
+            margin-left: -50vw;
+            margin-right: -50vw;
+            background: url('footer-bg.jpg') center/cover no-repeat;
+            overflow: hidden;
+        }
+
+
+
+        .footer-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(31, 111, 255, 0.8); /* Совпадает с header */    
+            padding: 80px 20px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            color: white;
+        }
+
+        .footer-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+            padding-bottom: 20px;
+        }
+
+        .footer-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: #007bff;
+        }
+
+        .footer-main-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .features-divider {
+            height: 2px;
+            background: rgba(255,255,255,0.2);
+            margin: 50px 0;
+        }
+
+        .advantages-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .advantage-item {
+            padding: 25px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 8px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-height: 200px; /* Фиксированная высота карточки */
+        }
+
+        .advantage-item h3 {
+            font-size: 1.3rem;
+            margin: 0 0 12px 0;
+            line-height: 1.3;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .advantage-item br {
+            content: " ";
+            display: block;
+            margin: -4px 0;
+        }
+
+        .advantage-item p {
+            margin: 0;
+            line-height: 1.5;
+        }
+
+
+        .material-icons {
+            font-size: 40px;
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        .platforms-intro {
+            padding: 4rem 0;
+            /* Убрана подсветка */
+            background: transparent !important;
+            border: none !important;
+        }
+
+        .content-wrapper {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .platforms-title {
+            font-weight: 600;
+            color: #2d3436;
+            line-height: 1.3;
+        }
+
+        .platforms-subtitle {
+            color: #636e72;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+
+        /* Базовый сброс */
+        html, body {
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        /* Главный контейнер */
+        .full-width-header {
+            position: relative;
+            width: 100vw;
+            left: 50%;
+            right: 50%;
+            margin-left: -50vw;
+            margin-right: -50vw;
+            margin-top: -220px;
+            z-index: 100;
+            backdrop-filter: blur(5px);
+            
+        }
+
+        .video-bg {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: 0;
+            object-fit: cover;
+        }
+
+        .video-container {
+            position: relative;
+            height: 667px; /* Регулируйте высоту */
+            overflow: hidden;
+        }
+
+        .header-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:  rgba(31, 111, 255, 0.8); /* Полупрозрачный синий фон */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .header-content {
+            width: 100%;
+            max-width: 1200px;
+            padding: 20px;
+            color: white;
+            text-align: center;
+        }
+    </style>
+    
+    @code {
+        private void NavigateToWildberries()
+        {
+            NavigationManager.NavigateTo("/wildberries");
+        }
+    
+        private void NavigateToOzon()
+        {
+            NavigationManager.NavigateTo("/ozon");
+        }
+    
+        private void NavigateToYamarket()
+        {
+            NavigationManager.NavigateTo("/yamarket");
+        }
+    }
+
+    

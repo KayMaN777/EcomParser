@@ -1,0 +1,451 @@
+﻿@page "/Ozon"
+@inject HttpClient Http
+@inject IBlazorDownloadFileService DownloadService
+@using System.Runtime.Serialization;
+@inject IConfiguration Configuration
+@using ChartOptions = MudBlazor.ChartOptions
+@using ChartType = MudBlazor.ChartType
+
+<div class="dashboard-wrapper">
+    <div class="charts-wrapper">
+        <div class="chart-container">
+            <MudChart
+                ChartType="ChartType.Bar"
+                BarStrokeWidth="7"
+                ChartSeries="@TopBrandsByCountSeries"
+                XAxisLabels="@_topBrandsByCountLabels.ToArray()"
+                Height="400px"
+                Width="500px"
+                ChartOptions="_options"
+                BarPercentage="0.8"
+                CategoryPercentage="0.9"
+                Style="background: #F5F5F5; border-radius: 6px;">
+
+            </MudChart>
+        </div>
+
+        <div class="chart-divider"></div>
+
+        <div class="chart-container">
+            <MudChart ChartType="ChartType.Bar"
+                      BarStrokeWidth="8"
+                      ChartSeries="@AveragePriceByBrandSeries"
+                      XAxisLabels="@_averagePriceByBrandLabels.ToArray()"
+                      Height="400px"
+                      Width="500px"
+                      ChartOptions="_options"
+                      Style="background: #F5F5F5; border-radius: 6px;">
+                <ChartSeries>
+                    <MudChartSeries Data="@AveragePriceByBrandSeries" Fill="#FFCC00" />
+                </ChartSeries>
+            </MudChart>
+        </div>
+
+        <div class="chart-divider"></div>
+
+        <div class="chart-container">
+            <MudChart ChartType="ChartType.Bar"
+                      ChartSeries="@TopBrandsByReviewsSeries"
+                      XAxisLabels="@_topBrandsByReviewsLabels.ToArray()"
+                      XAxisLabelRotation="-45"
+                      Height="400px"
+                      Width="500px"
+                      BarPercentage="0.8"
+                      ChartOptions="_options"
+                      Style="background: #F5F5F5; border-radius: 6px;">
+                <ChartSeries>
+                    <MudChartSeries Data="@TopBrandsByReviewsSeries" Fill="#FFCC00" />
+                </ChartSeries>
+            </MudChart>
+        </div>
+    </div>
+
+
+
+
+
+
+
+    <div class="full-width-section">
+        <MudGrid Spacing="3" Class="full-width-grid">
+            <MudItem xs="12" Class="form-item">
+                <MudSelect T="RequestType" Label="Тип запроса" @bind-Value="requestType">
+                    <MudSelectItem Value="RequestType.Search">Поиск</MudSelectItem>
+                    <MudSelectItem Value="RequestType.Category">Категория</MudSelectItem>
+                    <MudSelectItem Value="RequestType.Seller">Продавец</MudSelectItem>
+                </MudSelect>
+            </MudItem>
+            <MudItem xs="12">
+                @if (requestType == RequestType.Search)
+                {
+                    <MudTextField Label="Текст запроса" @bind-Value="_searchText" FullWidth="true" />
+                }
+                else
+                {
+                    <MudTextField Label="Ссылка" @bind-Value="_link" FullWidth="true" />
+                }
+            </MudItem>
+            <MudItem xs="12">
+                <MudTextField Label="Количество результатов"
+                              @bind-Value="_numResults"
+                              InputType="InputType.Number"
+                              FullWidth="true" />
+            </MudItem>
+            <MudItem xs="12">
+                <MudSelect T="SortOrder" Label="Порядок сортировки" @bind-Value="order">
+                    <MudSelectItem Value="SortOrder.popularity">По популярности</MudSelectItem>
+                    <MudSelectItem Value="SortOrder.low_price">Сначала дешевые</MudSelectItem>
+                    <MudSelectItem Value="SortOrder.high_price">Сначала дорогие</MudSelectItem>
+                    <MudSelectItem Value="SortOrder.rating">По рейтингу</MudSelectItem>
+                    <MudSelectItem Value="SortOrder.New">По новинкам</MudSelectItem>
+                </MudSelect>
+            </MudItem>
+            <MudItem xs="12">
+                <MudButton Variant="Variant.Filled"
+                           Color="Color.Primary"
+                           FullWidth="true"
+                           OnClick="FetchData">
+                    Запросить
+                </MudButton>
+            </MudItem>
+            <MudItem xs="12">
+                <MudButton Variant="Variant.Filled"
+                           Color="Color.Success"
+                           FullWidth="true"
+                           OnClick="DownloadFile">
+                    Скачать CSV
+                </MudButton>
+            </MudItem>
+            <MudItem xs="12" Class="table-item">
+                <MudPaper Class="pa-4 full-width-paper">
+                    @if (_searchResults != null)
+                    {
+                        <div class="table-container">
+                            <MudTable Items="@_searchResults" Class="full-width-table">
+                                <!-- ... -->
+                            </MudTable>
+                        </div>
+                    }
+                </MudPaper>
+            </MudItem>
+        </MudGrid>
+    </div>
+</div>
+
+
+<style>
+    .mud-chart-bar {
+        stroke-width: 15px !important; /* Увеличит ширину столбцов */
+    }
+    .mud-chart {
+  
+        overflow: visible !important; /* Разрешаем выходить элементам за пределы */
+    }
+    
+    .dashboard-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+        width: 100%;
+        max-width: 1920px;
+        margin-top: -160px;
+    }
+    .charts-wrapper {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        width: 100%;
+        padding: 20px;
+    }
+    .chart-divider {
+        width: 3px;
+        height: 380px;
+        margin: 0 20px;
+        flex-shrink: 0;
+    }
+    .chart-container {
+        background: #F5F5F5;
+        border-radius: 6px;
+        padding: 10px;
+        width: 700px;
+        position: relative;
+        overflow: visible;
+  
+    }
+    .csv-wrapper {
+        margin-top: 20px;
+        width: 100%;
+        max-width: 1200px; /* Увеличена максимальная ширина */
+        padding: 15px;
+        background: #f5f5f5;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .mud-paper {
+        transition: box-shadow 0.3s ease;
+    }
+    .mud-paper:hover {
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    .csv-wrapper {
+        margin-top: 20px;
+        width: 100%;
+        max-width: 600px;
+    }
+    /* Основной контейнер */
+    .full-width-section {
+        width: 100vw;
+        margin-left: 0 ;
+        padding: 0 15px;
+    }
+    /* Переопределение стилей MudBlazor */
+    .full-width-grid {
+        max-width: 100% !important;
+        width: 100% !important;
+        margin: 0 !important;
+    }
+    .form-item .mud-select,
+    .form-item .mud-text-field {
+        width: 100% !important;
+    }
+    .table-container {
+        width: 100%;
+        overflow-x: auto;
+    }
+    .full-width-table {
+        min-width: 100% !important;
+        table-layout: fixed;
+    }
+    .full-width-paper {
+        width: 100% !important;
+        max-width: none !important;
+    }
+    .mud-ltr{
+        overflow: visible !important;
+    }
+    
+</style>
+
+
+@code {
+private SortOrder order = SortOrder.popularity;
+private RequestType requestType = RequestType.Search;
+private string _searchText;
+private string _link;
+private int _numResults = 10;
+private List<Product> _searchResults;
+
+
+
+
+
+public List<ChartSeries> Series = new List<ChartSeries>();
+public string[] XAxisLabels;
+public List<ChartSeries> TopBrandsByCountSeries = new List<ChartSeries>();
+public List<ChartSeries> AveragePriceByBrandSeries = new List<ChartSeries>();
+public List<ChartSeries> TopBrandsByReviewsSeries = new List<ChartSeries>();
+
+private List<string> _topBrandsByCountLabels = new List<string>();
+private List<double> _topBrandsByCountData = new List<double>();
+
+private List<string> _averagePriceByBrandLabels = new List<string>();
+private List<double> _averagePriceByBrandData = new List<double>();
+
+private List<string> _topBrandsByReviewsLabels = new List<string>();
+private List<double> _topBrandsByReviewsData = new List<double>(); // Изменено с double[] на List<double>
+
+
+private async Task FetchData()
+{
+try
+{
+string endpoint = requestType switch
+{
+RequestType.Search => "/ozon/search",
+RequestType.Category => "/ozon/category",
+RequestType.Seller => "/ozon/seller",
+_ => throw new Exception("Неизвестный тип запроса")
+};
+
+object payload = requestType == RequestType.Search
+? new { text = _searchText, num = _numResults, order = order.ToString().ToLower() }
+: new { link = _link, num = _numResults, order = order.ToString().ToLower() }; // Добавлено
+
+var query = requestType == RequestType.Search
+? $"text={Uri.EscapeDataString(_searchText)}&num={_numResults}&order={order.ToString().ToLower()}"
+: $"link={Uri.EscapeDataString(_link)}&num={_numResults}&order={order.ToString().ToLower()}"; // Добавлено
+
+// Получаем apiUrl из конфигурации
+var apiUrl = Configuration["ApiSettings:ApiUrl"];
+// Строим полный URL для запроса
+var fullUrl = $"{apiUrl}{endpoint}?{query}";
+
+Console.WriteLine(fullUrl);
+// Отправляем запрос
+var response = await Http.GetAsync(fullUrl);
+
+
+if (response.IsSuccessStatusCode)
+{
+var result = await response.Content.ReadFromJsonAsync<ApiResponse>();
+if (result != null)
+{
+_searchResults = result.Data;
+PrepareChartData();
+StateHasChanged();
+}
+}
+}
+catch (Exception ex)
+{
+Console.WriteLine($"Ошибка: {ex.Message}");
+}
+}
+
+private enum RequestType { Search, Category, Seller }
+private enum SortOrder { popularity, low_price, high_price, rating, [EnumMember(Value = "new")] New }
+
+ChartOptions _options = new() 
+{ 
+    ChartPalette = new[] { "Blue", "#005bff" },
+    MaxNumYAxisTicks = 5,          // Ограничение количества делений на оси Y
+    YAxisTicks = 2,                // Автоматический подбор шага
+    YAxisLines = true,             // Включаем вертикальные линии
+    XAxisLines = true,             // Включаем горизонтальные линии
+    YAxisFormat = "#,##0.0K",      // Формат для оси Y (например, 1.5K)
+    
+ 
+};
+
+private void PrepareChartData()
+{
+    // Настройки для графика
+
+
+    // Топ брендов по количеству товаров
+    var topBrandsByCount = _searchResults
+        .GroupBy(p => p.Brand)
+        .OrderByDescending(g => g.Count())
+        .Take(10)
+        .ToList();
+
+    // Подготовка данных для графика (количество товаров по брендам)
+    _topBrandsByCountLabels = topBrandsByCount.Select(g => g.Key).ToList();
+    _topBrandsByCountData = topBrandsByCount.Select(g => (double)g.Count()).ToList();
+
+    TopBrandsByCountSeries = new List<ChartSeries>
+    {
+        new ChartSeries() { Name = "Количество брендов", Data = _topBrandsByCountData.ToArray() }
+    };
+
+    // Средняя цена по брендам
+    var averagePriceByBrand = _searchResults
+        .GroupBy(p => p.Brand)
+        .Select(g => new { Brand = g.Key, AveragePrice = g.Average(p => p.Price) })
+        .OrderByDescending(g => g.AveragePrice)
+        .Take(10)
+        .ToList();
+
+    // Подготовка данных для графика (средняя цена по брендам)
+    _averagePriceByBrandLabels = averagePriceByBrand.Select(g => g.Brand).ToList();
+    _averagePriceByBrandData = averagePriceByBrand
+        .Select(g => Math.Round((double)g.AveragePrice / 1000, 1)) // Округление до 1 знака
+        .ToList();
+
+    AveragePriceByBrandSeries.Clear();
+    AveragePriceByBrandSeries.Add(new ChartSeries()
+    {
+        Name = "Средняя цена",
+        Data = _averagePriceByBrandData.ToArray()
+    });
+
+    // Топ брендов по количеству отзывов
+    var topBrandsByReviews = _searchResults
+        .GroupBy(p => p.Brand)
+        .Select(g => new { Brand = g.Key, TotalReviews = g.Sum(p => p.Reviews) })
+        .OrderByDescending(g => g.TotalReviews)
+        .Take(10)
+        .ToList();
+
+    // Подготовка данных для графика (количество отзывов по брендам)
+    _topBrandsByReviewsLabels = topBrandsByReviews.Select(g => g.Brand).ToList();
+    _topBrandsByReviewsData = topBrandsByReviews.Select(g => Math.Round((double)g.TotalReviews / 1000,1)).ToList();
+
+    TopBrandsByReviewsSeries = new List<ChartSeries>
+    {
+        new ChartSeries() { Name = "Количество отзывов", Data = _topBrandsByReviewsData.ToArray() }
+    };
+
+    // Вывод данных в консоль для отладки
+    Console.WriteLine("Данные по количеству товаров: " + string.Join(", ", _topBrandsByCountData));
+    Console.WriteLine("Данные по средней цене: " + string.Join(", ", _averagePriceByBrandData));
+    Console.WriteLine("Данные по количеству отзывов: " + string.Join(", ", _topBrandsByReviewsData));
+
+    // Обновление состояния компонента
+    StateHasChanged();
+}
+
+
+
+
+
+
+
+private async Task DownloadFile()
+{
+if (_searchResults == null || !_searchResults.Any())
+{
+Console.WriteLine("Ошибка: Нет результатов для скачивания.");
+return;
+}
+
+var filename = _searchResults.FirstOrDefault()?.Filename ?? "results.csv";
+
+
+
+// Получаем apiUrl из конфигурации
+var apiUrl = Configuration["ApiSettings:ApiUrl"];
+
+
+
+// Строим полный URL с параметром filename
+var url = $"{apiUrl}/download?filename={Uri.EscapeDataString(filename)}";
+
+// Отправляем запрос
+var response = await Http.GetAsync(url);
+
+
+if (response.IsSuccessStatusCode)
+{
+var fileContent = await response.Content.ReadAsByteArrayAsync();
+await DownloadService.DownloadFile(filename, fileContent, "text/csv");
+}
+else
+{
+Console.WriteLine($"Ошибка скачивания: {response.StatusCode}");
+}
+}
+
+
+
+public class Product
+{
+public string Link { get; set; }
+public string ProductId { get; set; }
+public string Name { get; set; }
+public string Brand { get; set; }
+public decimal Price { get; set; }
+public decimal DiscountPrice { get; set; }
+public decimal Rating { get; set; }
+public int Reviews { get; set; }
+public string Filename { get; set; }
+}
+
+public class ApiResponse
+{
+public string Filename { get; set; }
+public List<Product> Data { get; set; }
+}
+}
+
