@@ -1,0 +1,123 @@
+openapi: 3.0.0
+info:
+  title: Ecom parser api gateway
+  version: 1.0.0
+
+paths:
+  /wildberries/search:
+    post:
+      summary: Search request for wildberries parser
+      description: Send a search request for wildberrires parser
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchRequest'
+      responses:
+        '200':
+          $ref: '#/components/responses/ListProductResponse'
+        '400':
+          description: Bad Request
+        '422':
+          description: Unprocessable Entity
+        '500':
+          description: Internal Error
+  /wildberries/category:
+    post:
+      summary: Category request for wildberries parser
+      description: Send a category request for wildberries parser
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CategoryRequest'
+      responses:
+        '200':
+          $ref: '#/components/responses/ListProductResponse'
+        '400':
+          description: Bad Request
+        '422':
+          description: Unprocessable Entity
+        '500':
+          description: Internal Error
+  /wildberries/seller:
+    post:
+      summary: Seller request for wildberries parser
+      description: Send a seler request for wildberries parser
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SellerRequest'
+      responses:
+        '200':
+          $ref: '#/components/responses/ListProductResponse'
+        '400':
+          description: Bad Request
+        '422':
+          description: Unprocessable Entity
+        '500':
+          description: Internal Error
+components:
+  schemas:
+    SearchRequest:
+      type: object
+      properties:
+        text:
+          type: string
+        num:
+          type: integer
+        order:
+          type: string
+    CategoryRequest:
+      type: object
+      properties:
+        link:
+          type: string
+        num:
+          type: string
+        order:
+          type: string
+    SellerRequest:
+      type: object
+      properties:
+        link:
+          type: string
+        num:
+          type: string
+        order:
+          type: string
+    ProductResponse:
+      type: object
+      properties:
+        productId:
+          type: integer
+        name:
+          type: string
+        brand:
+          type: string
+        price:
+          type: integer
+        discountPrice:
+          type: integer
+        rating:
+          type: number
+        reviews:
+          type: integer
+  responses:
+    ListProductResponse:
+      description: Parser response
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              filename:
+                type: string
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProductResponse'
