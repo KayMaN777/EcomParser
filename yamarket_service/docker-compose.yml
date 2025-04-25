@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  yamarket_service:
+    restart: unless-stopped
+    build:
+      context: .
+      dockerfile: Dockerfile
+    env_file:
+      - .env
+    command:
+      [
+        "python3",
+        "-u",
+        "main.py"
+      ]
+    container_name: yamarket_service
+    ports:
+      - "${YAMARKET_PARSER_API_PORT}:${YAMARKET_PARSER_API_PORT}"

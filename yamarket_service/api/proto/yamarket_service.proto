@@ -1,0 +1,43 @@
+// yamarket_service.proto
+
+syntax = "proto3";
+package yamarket;
+
+service YamarketService {
+    rpc search(SearchRequest) returns (ListProductResponse);
+    rpc category(CategoryRequest) returns (ListProductResponse);
+    rpc seller(SellerRequest) returns (ListProductResponse);
+}
+
+message SearchRequest {
+    string text = 1;
+    int32 num = 2;
+    string order = 3;
+}
+
+message CategoryRequest {
+    string link = 1;
+    int32 num = 2;
+    string order = 3;
+}
+
+message SellerRequest {
+    string link = 1;
+    int32 num = 2;
+    string order = 3;
+}
+
+message ProductResponse {
+    int32 product_id = 1;
+    string name = 2;
+    string brand = 3;
+    int32 price = 4;
+    int32 discount_price = 5;
+    float rating = 6;
+    int32 reviews = 7;
+}
+
+message ListProductResponse {
+    string filename = 1;
+    repeated ProductResponse data = 2;
+}

@@ -118,6 +118,63 @@ paths:
           description: Unprocessable Entity
         '500':
           description: Internal Error
+  /yamarket/search:
+    post:
+      summary: Search request for yandex market parser
+      description: Send a search request for yandex market parser
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchRequest'
+      responses:
+        '200':
+          $ref: '#/components/responses/ListProductResponse'
+        '400':
+          description: Bad Request
+        '422':
+          description: Unprocessable Entity
+        '500':
+          description: Internal Error
+  /yamarket/category:
+    post:
+      summary: Category request for yandex market parser
+      description: Send a category request for yandex market parser
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CategoryRequest'
+      responses:
+        '200':
+          $ref: '#/components/responses/ListProductResponse'
+        '400':
+          description: Bad Request
+        '422':
+          description: Unprocessable Entity
+        '500':
+          description: Internal Error
+  /yamarket/seller:
+    post:
+      summary: Seller request for yandex market parser
+      description: Send a seler request for yandex market parser
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SellerRequest'
+      responses:
+        '200':
+          $ref: '#/components/responses/ListProductResponse'
+        '400':
+          description: Bad Request
+        '422':
+          description: Unprocessable Entity
+        '500':
+          description: Internal Error
 components:
   schemas:
     SearchRequest:
