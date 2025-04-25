@@ -24,23 +24,23 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x19wildberries_service.proto\"9\n\rSearchRequest\x12\x0c\n\x04text\x18\x01 \x01(\t\x12\x0b\n\x03num\x18\x02 \x01(\x05\x12\r\n\x05order\x18\x03 \x01(\t\";\n\x0f\x43\x61tegoryRequest\x12\x0c\n\x04link\x18\x01 \x01(\t\x12\x0b\n\x03num\x18\x02 \x01(\x05\x12\r\n\x05order\x18\x03 \x01(\t\"9\n\rSellerRequest\x12\x0c\n\x04link\x18\x01 \x01(\t\x12\x0b\n\x03num\x18\x02 \x01(\x05\x12\r\n\x05order\x18\x03 \x01(\t\"\x8a\x01\n\x0fProductResponse\x12\x12\n\nproduct_id\x18\x01 \x01(\x05\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\r\n\x05\x62rand\x18\x03 \x01(\t\x12\r\n\x05price\x18\x04 \x01(\x05\x12\x16\n\x0e\x64iscount_price\x18\x05 \x01(\x05\x12\x0e\n\x06rating\x18\x06 \x01(\x02\x12\x0f\n\x07reviews\x18\x07 \x01(\x05\"G\n\x13ListProductResponse\x12\x10\n\x08\x66ilename\x18\x01 \x01(\t\x12\x1e\n\x04\x64\x61ta\x18\x02 \x03(\x0b\x32\x10.ProductResponse2\xa8\x01\n\x12WildberriesService\x12.\n\x06search\x12\x0e.SearchRequest\x1a\x14.ListProductResponse\x12\x32\n\x08\x63\x61tegory\x12\x10.CategoryRequest\x1a\x14.ListProductResponse\x12.\n\x06seller\x12\x0e.SellerRequest\x1a\x14.ListProductResponseb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x19wildberries_service.proto\x12\x0bwildberries\"9\n\rSearchRequest\x12\x0c\n\x04text\x18\x01 \x01(\t\x12\x0b\n\x03num\x18\x02 \x01(\x05\x12\r\n\x05order\x18\x03 \x01(\t\";\n\x0f\x43\x61tegoryRequest\x12\x0c\n\x04link\x18\x01 \x01(\t\x12\x0b\n\x03num\x18\x02 \x01(\x05\x12\r\n\x05order\x18\x03 \x01(\t\"9\n\rSellerRequest\x12\x0c\n\x04link\x18\x01 \x01(\t\x12\x0b\n\x03num\x18\x02 \x01(\x05\x12\r\n\x05order\x18\x03 \x01(\t\"\x8a\x01\n\x0fProductResponse\x12\x12\n\nproduct_id\x18\x01 \x01(\x05\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\r\n\x05\x62rand\x18\x03 \x01(\t\x12\r\n\x05price\x18\x04 \x01(\x05\x12\x16\n\x0e\x64iscount_price\x18\x05 \x01(\x05\x12\x0e\n\x06rating\x18\x06 \x01(\x02\x12\x0f\n\x07reviews\x18\x07 \x01(\x05\"S\n\x13ListProductResponse\x12\x10\n\x08\x66ilename\x18\x01 \x01(\t\x12*\n\x04\x64\x61ta\x18\x02 \x03(\x0b\x32\x1c.wildberries.ProductResponse2\xf0\x01\n\x12WildberriesService\x12\x46\n\x06search\x12\x1a.wildberries.SearchRequest\x1a .wildberries.ListProductResponse\x12J\n\x08\x63\x61tegory\x12\x1c.wildberries.CategoryRequest\x1a .wildberries.ListProductResponse\x12\x46\n\x06seller\x12\x1a.wildberries.SellerRequest\x1a .wildberries.ListProductResponseb\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'wildberries_service_pb2', _globals)
 if not _descriptor._USE_C_DESCRIPTORS:
   DESCRIPTOR._loaded_options = None
-  _globals['_SEARCHREQUEST']._serialized_start=29
-  _globals['_SEARCHREQUEST']._serialized_end=86
-  _globals['_CATEGORYREQUEST']._serialized_start=88
-  _globals['_CATEGORYREQUEST']._serialized_end=147
-  _globals['_SELLERREQUEST']._serialized_start=149
-  _globals['_SELLERREQUEST']._serialized_end=206
-  _globals['_PRODUCTRESPONSE']._serialized_start=209
-  _globals['_PRODUCTRESPONSE']._serialized_end=347
-  _globals['_LISTPRODUCTRESPONSE']._serialized_start=349
-  _globals['_LISTPRODUCTRESPONSE']._serialized_end=420
-  _globals['_WILDBERRIESSERVICE']._serialized_start=423
-  _globals['_WILDBERRIESSERVICE']._serialized_end=591
+  _globals['_SEARCHREQUEST']._serialized_start=42
+  _globals['_SEARCHREQUEST']._serialized_end=99
+  _globals['_CATEGORYREQUEST']._serialized_start=101
+  _globals['_CATEGORYREQUEST']._serialized_end=160
+  _globals['_SELLERREQUEST']._serialized_start=162
+  _globals['_SELLERREQUEST']._serialized_end=219
+  _globals['_PRODUCTRESPONSE']._serialized_start=222
+  _globals['_PRODUCTRESPONSE']._serialized_end=360
+  _globals['_LISTPRODUCTRESPONSE']._serialized_start=362
+  _globals['_LISTPRODUCTRESPONSE']._serialized_end=445
+  _globals['_WILDBERRIESSERVICE']._serialized_start=448
+  _globals['_WILDBERRIESSERVICE']._serialized_end=688
 # @@protoc_insertion_point(module_scope)

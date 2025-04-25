@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  ozon_service:
+    restart: unless-stopped
+    build:
+      context: .
+      dockerfile: Dockerfile
+    env_file:
+      - .env
+    command:
+      [
+        "python3",
+        "-u",
+        "main.py"
+      ]
+    container_name: ozon_service
+    ports:
+      - "${OZON_PARSER_API_PORT}:${OZON_PARSER_API_PORT}"

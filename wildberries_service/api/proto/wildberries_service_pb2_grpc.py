@@ -35,17 +35,17 @@ class WildberriesServiceStub(object):
             channel: A grpc.Channel.
         """
         self.search = channel.unary_unary(
-                '/WildberriesService/search',
+                '/wildberries.WildberriesService/search',
                 request_serializer=wildberries__service__pb2.SearchRequest.SerializeToString,
                 response_deserializer=wildberries__service__pb2.ListProductResponse.FromString,
                 _registered_method=True)
         self.category = channel.unary_unary(
-                '/WildberriesService/category',
+                '/wildberries.WildberriesService/category',
                 request_serializer=wildberries__service__pb2.CategoryRequest.SerializeToString,
                 response_deserializer=wildberries__service__pb2.ListProductResponse.FromString,
                 _registered_method=True)
         self.seller = channel.unary_unary(
-                '/WildberriesService/seller',
+                '/wildberries.WildberriesService/seller',
                 request_serializer=wildberries__service__pb2.SellerRequest.SerializeToString,
                 response_deserializer=wildberries__service__pb2.ListProductResponse.FromString,
                 _registered_method=True)
@@ -92,9 +92,9 @@ def add_WildberriesServiceServicer_to_server(servicer, server):
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
-            'WildberriesService', rpc_method_handlers)
+            'wildberries.WildberriesService', rpc_method_handlers)
     server.add_generic_rpc_handlers((generic_handler,))
-    server.add_registered_method_handlers('WildberriesService', rpc_method_handlers)
+    server.add_registered_method_handlers('wildberries.WildberriesService', rpc_method_handlers)
 
 
  # This class is part of an EXPERIMENTAL API.
@@ -115,7 +115,7 @@ class WildberriesService(object):
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/WildberriesService/search',
+            '/wildberries.WildberriesService/search',
             wildberries__service__pb2.SearchRequest.SerializeToString,
             wildberries__service__pb2.ListProductResponse.FromString,
             options,
@@ -142,7 +142,7 @@ class WildberriesService(object):
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/WildberriesService/category',
+            '/wildberries.WildberriesService/category',
             wildberries__service__pb2.CategoryRequest.SerializeToString,
             wildberries__service__pb2.ListProductResponse.FromString,
             options,
@@ -169,7 +169,7 @@ class WildberriesService(object):
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/WildberriesService/seller',
+            '/wildberries.WildberriesService/seller',
             wildberries__service__pb2.SellerRequest.SerializeToString,
             wildberries__service__pb2.ListProductResponse.FromString,
             options,

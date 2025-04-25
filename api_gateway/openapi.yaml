@@ -61,6 +61,63 @@ paths:
           description: Unprocessable Entity
         '500':
           description: Internal Error
+  /ozon/search:
+    post:
+      summary: Search request for ozon parser
+      description: Send a search request for ozon parser
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchRequest'
+      responses:
+        '200':
+          $ref: '#/components/responses/ListProductResponse'
+        '400':
+          description: Bad Request
+        '422':
+          description: Unprocessable Entity
+        '500':
+          description: Internal Error
+  /ozon/category:
+    post:
+      summary: Category request for ozon parser
+      description: Send a category request for ozon parser
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CategoryRequest'
+      responses:
+        '200':
+          $ref: '#/components/responses/ListProductResponse'
+        '400':
+          description: Bad Request
+        '422':
+          description: Unprocessable Entity
+        '500':
+          description: Internal Error
+  /ozon/seller:
+    post:
+      summary: Seller request for ozon parser
+      description: Send a seler request for ozon parser
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SellerRequest'
+      responses:
+        '200':
+          $ref: '#/components/responses/ListProductResponse'
+        '400':
+          description: Bad Request
+        '422':
+          description: Unprocessable Entity
+        '500':
+          description: Internal Error
 components:
   schemas:
     SearchRequest:

@@ -11,27 +11,27 @@ def mock_data():
         "reviews": 150,
     }
 
-class WildberriesParser:
+class OzonParser:
     def __init__(self):
         pass
 
     def search(self, text, num, order):
         data = [mock_data() for _ in range(num)]
         return {
-            'filename': 'mock wildberries search',
+            'filename': 'mock ozon search',
             'data': data
         }
 
     def category(self, link, num, order):
         data = [mock_data() for _ in range(num)]
         return {
-            'filename': 'mock wildberries category',
+            'filename': 'mock ozon category',
             'data': data
         }
 
     def seller(self, link, num, order):
         data = [mock_data() for _ in range(num)]
         return {
-            'filename': 'mock wildberries seller',
+            'filename': 'mock ozon seller',
             'data': data
         }

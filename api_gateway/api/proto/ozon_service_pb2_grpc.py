@@ -3,7 +3,7 @@
 import grpc
 import warnings
 
-import api.proto.wildberries_service_pb2 as wildberries__service__pb2
+import api.proto.ozon_service_pb2 as ozon__service__pb2
 
 GRPC_GENERATED_VERSION = '1.71.0'
 GRPC_VERSION = grpc.__version__
@@ -18,14 +18,14 @@ except ImportError:
 if _version_not_supported:
     raise RuntimeError(
         f'The grpc package installed is at version {GRPC_VERSION},'
-        + f' but the generated code in wildberries_service_pb2_grpc.py depends on'
+        + f' but the generated code in ozon_service_pb2_grpc.py depends on'
         + f' grpcio>={GRPC_GENERATED_VERSION}.'
         + f' Please upgrade your grpc module to grpcio>={GRPC_GENERATED_VERSION}'
         + f' or downgrade your generated code using grpcio-tools<={GRPC_VERSION}.'
     )
 
 
-class WildberriesServiceStub(object):
+class OzonServiceStub(object):
     """Missing associated documentation comment in .proto file."""
 
     def __init__(self, channel):
@@ -35,23 +35,23 @@ class WildberriesServiceStub(object):
             channel: A grpc.Channel.
         """
         self.search = channel.unary_unary(
-                '/wildberries.WildberriesService/search',
-                request_serializer=wildberries__service__pb2.SearchRequest.SerializeToString,
-                response_deserializer=wildberries__service__pb2.ListProductResponse.FromString,
+                '/ozon.OzonService/search',
+                request_serializer=ozon__service__pb2.SearchRequest.SerializeToString,
+                response_deserializer=ozon__service__pb2.ListProductResponse.FromString,
                 _registered_method=True)
         self.category = channel.unary_unary(
-                '/wildberries.WildberriesService/category',
-                request_serializer=wildberries__service__pb2.CategoryRequest.SerializeToString,
-                response_deserializer=wildberries__service__pb2.ListProductResponse.FromString,
+                '/ozon.OzonService/category',
+                request_serializer=ozon__service__pb2.CategoryRequest.SerializeToString,
+                response_deserializer=ozon__service__pb2.ListProductResponse.FromString,
                 _registered_method=True)
         self.seller = channel.unary_unary(
-                '/wildberries.WildberriesService/seller',
-                request_serializer=wildberries__service__pb2.SellerRequest.SerializeToString,
-                response_deserializer=wildberries__service__pb2.ListProductResponse.FromString,
+                '/ozon.OzonService/seller',
+                request_serializer=ozon__service__pb2.SellerRequest.SerializeToString,
+                response_deserializer=ozon__service__pb2.ListProductResponse.FromString,
                 _registered_method=True)
 
 
-class WildberriesServiceServicer(object):
+class OzonServiceServicer(object):
     """Missing associated documentation comment in .proto file."""
 
     def search(self, request, context):
@@ -73,32 +73,32 @@ class WildberriesServiceServicer(object):
         raise NotImplementedError('Method not implemented!')
 
 
-def add_WildberriesServiceServicer_to_server(servicer, server):
+def add_OzonServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
             'search': grpc.unary_unary_rpc_method_handler(
                     servicer.search,
-                    request_deserializer=wildberries__service__pb2.SearchRequest.FromString,
-                    response_serializer=wildberries__service__pb2.ListProductResponse.SerializeToString,
+                    request_deserializer=ozon__service__pb2.SearchRequest.FromString,
+                    response_serializer=ozon__service__pb2.ListProductResponse.SerializeToString,
             ),
             'category': grpc.unary_unary_rpc_method_handler(
                     servicer.category,
-                    request_deserializer=wildberries__service__pb2.CategoryRequest.FromString,
-                    response_serializer=wildberries__service__pb2.ListProductResponse.SerializeToString,
+                    request_deserializer=ozon__service__pb2.CategoryRequest.FromString,
+                    response_serializer=ozon__service__pb2.ListProductResponse.SerializeToString,
             ),
             'seller': grpc.unary_unary_rpc_method_handler(
                     servicer.seller,
-                    request_deserializer=wildberries__service__pb2.SellerRequest.FromString,
-                    response_serializer=wildberries__service__pb2.ListProductResponse.SerializeToString,
+                    request_deserializer=ozon__service__pb2.SellerRequest.FromString,
+                    response_serializer=ozon__service__pb2.ListProductResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
-            'wildberries.WildberriesService', rpc_method_handlers)
+            'ozon.OzonService', rpc_method_handlers)
     server.add_generic_rpc_handlers((generic_handler,))
-    server.add_registered_method_handlers('wildberries.WildberriesService', rpc_method_handlers)
+    server.add_registered_method_handlers('ozon.OzonService', rpc_method_handlers)
 
 
  # This class is part of an EXPERIMENTAL API.
-class WildberriesService(object):
+class OzonService(object):
     """Missing associated documentation comment in .proto file."""
 
     @staticmethod
@@ -115,9 +115,9 @@ class WildberriesService(object):
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/wildberries.WildberriesService/search',
-            wildberries__service__pb2.SearchRequest.SerializeToString,
-            wildberries__service__pb2.ListProductResponse.FromString,
+            '/ozon.OzonService/search',
+            ozon__service__pb2.SearchRequest.SerializeToString,
+            ozon__service__pb2.ListProductResponse.FromString,
             options,
             channel_credentials,
             insecure,
@@ -142,9 +142,9 @@ class WildberriesService(object):
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/wildberries.WildberriesService/category',
-            wildberries__service__pb2.CategoryRequest.SerializeToString,
-            wildberries__service__pb2.ListProductResponse.FromString,
+            '/ozon.OzonService/category',
+            ozon__service__pb2.CategoryRequest.SerializeToString,
+            ozon__service__pb2.ListProductResponse.FromString,
             options,
             channel_credentials,
             insecure,
@@ -169,9 +169,9 @@ class WildberriesService(object):
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/wildberries.WildberriesService/seller',
-            wildberries__service__pb2.SellerRequest.SerializeToString,
-            wildberries__service__pb2.ListProductResponse.FromString,
+            '/ozon.OzonService/seller',
+            ozon__service__pb2.SellerRequest.SerializeToString,
+            ozon__service__pb2.ListProductResponse.FromString,
             options,
             channel_credentials,
             insecure,
