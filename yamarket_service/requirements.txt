@@ -2,3 +2,5 @@ grpcio==1.71.0
 grpcio-reflection==1.71.0
 protobuf==5.29.4
 python-dotenv==1.1.0
+undetected-chromedriver==3.5.5
+bs4==0.0.2
