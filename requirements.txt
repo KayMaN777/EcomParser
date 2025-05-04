@@ -1,0 +1,12 @@
+grpcio==1.71.0
+grpcio-reflection==1.71.0
+protobuf==5.29.4
+python-dotenv==1.1.0
+undetected-chromedriver==3.5.5
+bs4==0.0.2
+requests==2.32.3
+uvicorn==0.34.2
+fastapi==0.115.12
+streamlit==1.44.1
+pandas==2.2.3
+matplotlib==3.10.1
