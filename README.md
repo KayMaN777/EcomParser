@@ -37,18 +37,18 @@
 <table>
   <tr>
     <td align="center">
-      <img src="media/example_main_page.png" width = "500"/><br/> Основная страница сайта
+      <img src="media/main_page.png" width = "500"/><br/> Основная страница сайта
     </td>
     <td align="center">
-      <img src="media/example_parser_page.png" width="500"/><br/>Страница парсера ozon
+      <img src="media/ozon_page.png" width="500"/><br/>Страница парсера ozon
     </td>
   </tr>
   <tr>
     <td align="center">
-      <img src="media/ozon_example.png" width="500"/><br/>Пример результата запроса к парсеру
+      <img src="media/ozon_graphics.png" width="500"/><br/>Пример результата запроса к парсеру
     </td>
     <td align="center">
-      <img src="media/data_example.png" width="500"/><br/>Полученные данные
+      <img src="media/ozon_csv.png" width="500"/><br/>Полученные данные
     </td>
   </tr>
 </table>
