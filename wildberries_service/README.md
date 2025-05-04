@@ -21,13 +21,13 @@ gRPC-сервис-парсер поисковой выдачи маркетпл�
 ## 📸 Примеры работы (скриншоты)
 
 <p align="center">
-  <img src="../media/wildberries_page.png" width="600"><br>
+  <img src="../media/wildberries_page.png" width="900"><br>
   Страница парсера wildberries
   <br><br>
-  <img src="../media/wildberries_graphics.png" width="600"><br>
+  <img src="../media/wildberries_graphics.png" width="900"><br>
   Пример результата запроса к парсеру
   <br><br>
-  <img src="../media/wildberries_csv.png" width="600"><br>
+  <img src="../media/wildberries_csv.png" width="900"><br>
   Пример полученных данных
 </p>
 
